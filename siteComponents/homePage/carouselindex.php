@@ -1,5 +1,5 @@
 <div class="container-fluid block">
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-theme="dark">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
         aria-current="true" aria-label="Slide 1" class="text-primary"></button>
@@ -27,8 +27,6 @@
               <p style="text-align: left">Sed maximus augue a elit vehicula hendrerit in at nisi</p>
               <p style="text-align: left">Donec tristique odio et nisi ultrices, at aliquet sem maximus</p>
               <p style="text-align: left">Proin euismod, augue in pellentesque accumsan, erat leo placerat eros</p>
-
-              </text>
             </div><!--text_block-->
           </div><!--container-fluid-half_№2-->
         </div><!--flex-container-->
@@ -77,16 +75,18 @@
       </div><!--carousel-item-№3-->
     </div><!--carousel-inner-->
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"
-      style="background: #F5F7FB;">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"><!-- style="background: #bfd3ff"-->
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
+
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
       data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
+
   </div>
 
 </div><!--container-fluid-->

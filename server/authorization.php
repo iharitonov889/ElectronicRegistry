@@ -11,8 +11,8 @@ if (isset($_POST['login_user'])) {//name of button
             $_SESSION['user_id'] = $row['patientId'];
             $_SESSION['user_login'] = $row['login'];
             $_SESSION['user_password'] = $row['password'];
-
-            header("Location: ./index.php");//Page
+            echo "<script>console.log('" . $_SESSION['user_password'] . "');</script>";
+            header("Location: ../../index.php");//Page
         }
     } else if (empty($result)) {
         echo "";

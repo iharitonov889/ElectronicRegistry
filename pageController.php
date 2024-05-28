@@ -1,11 +1,28 @@
 <?php
 
+
+$siteroot = __DIR__;
+include ($siteroot . '/server/connect.php');
+//echo "<script>console.log('" . $siteroot . "' );</script>";//$server = 'localhost'; - $siteroot works
+
+
 function getAbsolutePath($file)
 {
     return realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $file;
 }
 
-//static path's
+/////static path's/////
+if (isset($_POST['loginUserButton'])) {
+    header("Location: pages/common/authorization.php");
+    exit();
+}
+;
+if (isset($_POST['toMainPage'])) {
+    header("Location: index.php");
+    exit();
+}
+;
+
 if (isset($_POST['sighUpButton'])) {
     header("Location: pages/patient/sighup.php");
     exit();
@@ -18,6 +35,8 @@ if (isset($_POST['userLogout'])) {
     header("location: $mainPage");
 }
 ;
+
+
 /*
 if (isset($_POST['login_manager'])) {
     header("Location: pages/manager/index.php");

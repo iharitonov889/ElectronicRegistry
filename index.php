@@ -3,14 +3,18 @@ session_start();
 
 include ('./pageController.php');
 
-$connect = getAbsolutePath('server/connect.php');
-include $connect;
+//include $connect = getAbsolutePath('server/connect.php');//include $connect;
 
-$registration = getAbsolutePath('server/registration.php');
-include $registration;
+//$registration = getAbsolutePath('server/registration.php');include $registration;
 
-$authorization = getAbsolutePath('server/authorization.php');
-include $authorization;
+
+/////"PHP-PAGE-CONTROLLER" (sort-a)
+/*
+<form method="post">
+<button type="submit" class="btn btn-primary btn-lg" name="loginUserButton">Войти в профиль</button>
+</form>
+*/
+
 ?>
 
 <!DOCTYPE html>
@@ -29,94 +33,66 @@ include $authorization;
 <body>
 
   <div class="wrapper">
-    <?php
-    $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-    include $headerCover;
-    echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "./images/logo.png" style="visibility: visible" > </a>
+
+    <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+      <!--flex-container (Row №1(Header)-->
+
+      <div class="frame pad"><!--header part №1-->
+        <a href="./index.php"> <img class="headerLogo mtmb" src="./images/logo.png" style="visibility: visible"> </a>
         <p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-       </div><!--framePad in headerCover-->
-      <div class="flex-container">';//path
-    ?>
+      </div><!--frame pad-->
 
-    <div class="frame pad">
-      <?php {
-        if (isset($_SESSION['user_login']) != null) {
-          echo '<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="userLogout">Выйти из профиля</button> </form>
+      <div class="frame"><!--header part №2-->
+        <div class="frame pad"><!--header subpart №2.1-->
+          <?php {
+            if (isset($_SESSION['user_login']) != null) {
+              echo '<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="userLogout">Выйти из профиля</button> </form>
           ';//path
-        } else {
-          echo '<button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-            data-bs-target="#RegModal">Регистрация</button>';
-        }
-        ;
-      } ?>
-    </div>
-
-    <div class="frame pad">
-      <?php {
-        if (isset($_SESSION['user_login']) != null) {
-          echo '<a href="./pages/patient/profile.php" class="button btn btn-primary btn-lg">Профиль</a>';//path
-        } else {
-          echo '<button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-          data-bs-target="#AuthModal">Войти в профиль</button>';
-        }
-      }
-      ;
-      //<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="userLogout">Выйти из профиля</button> </form>
-      //<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="userProfile">Профиль</button> </form> 
-      ?>
-    </div>
-
-    <?php
-    $header = getAbsolutePath('siteComponents/header.php');
-    include $header;
-    ?>
-
-    <div class="wrapper">
-      <div class="frame " style="align-items: stretch;
-     justify-content: space-around;"><!--menu under header-->
-
-        <div class="frame"><!--Button №1-->
-          <div class="blockBody">
-            <div style=" text-align: center;">
-              <img class="headerLogo mtmb" src="./images/scedulePatient.png">
-            </div>
-            <form method="post">
-              <button type="submit" class="btn btn-primary" name="sighUpButton">Записаться на приём</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="frame "><!--Button №2-->
-          <div class="blockBody">
-            <div style=" text-align: center;">
-              <img class="headerLogo mtmb" src="./images/managerIco.png">
-            </div>
-
-            <?php
-            if (isset($_SESSION['manager_login']) != null) {
-              echo '<a href="./pages/manager/index.php" class="button btn btn-primary btn-lg">Главная страница</a>';//path
             } else {
-              echo '<button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-              data-bs-target="#AuthModalManager">Авторизоваться</button>';
+              echo '<a href="pages/common/registration.php"><button class="btn btn-primary btn-lg"
+           >Регистрация</button></a>';//'<button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#RegModal">Регистрация</button>'
+          
             }
-            ?>
-
-            <!--modal-on button MUSNT be in FORM-->
-            <!--<button type="submit" class="btn btn-primary" name="sighUpButton"></button>-->
-            <!--</form>-->
-          </div>
+            ;
+          } ?>
         </div>
 
-      </div>
+        <div class="frame pad"><!--header subpart №2.2-->
+          <?php {
+            if (isset($_SESSION['user_login']) != null) {
+              echo '<a href="./pages/patient/profile.php" class="button btn btn-primary btn-lg">Профиль</a>';//path!
+            } else {
+              echo '<form method="post"><button type="submit" class="btn btn-primary btn-lg" name="loginUserButton">Войти в профиль</button></form>';
+            }
+            ;
+          }
+          ;
+          ?>
+        </div>
+      </div><!--frame header-combiner-->
 
-      <div class="frameWOIF pad">
-        <div class="flex-container col-sm-12 col-lg-12">
-          <div class="flex-element col-sm-12 col-lg-6">
-            <?php include ('./siteComponents/homePage/carouselindex.php'); ?>
+    </header><!--flex-container (Row №1(Header)-->
+    <div class="flex-container blockBody "><!--flex-container (Row №2(Menu under header)-->
+      <ul class="nav justify-content-center border-top pt-3 mt-3">
+        <form method="post">
+          <div class="frame" style="display:inline-block;"><!-- color:green;-->
+
+            <button type="submit" class="btn btn-primary btnlikelink px-5" name="sighUpButton"><img
+                class="imgbutton headerLogo mtmb" src="./images/scedulePatient.png">Записаться на
+              приём</button>
           </div>
-          <div class="flex-element col-sm-12 col-lg-6">
-            <?php include ('./siteComponents/homePage/historyindex.php'); ?>
-          </div>
+        </form>
+      </ul>
+    </div><!--flex-container (Row №2(Menu under header)-->
+
+    <div class="content">
+      <div class="flex-container blockBody mb-5 mt-5">
+        <div class="frame flex-element col-sm-12 col-lg-6 pad">
+          <?php include ('./siteComponents/homePage/carouselindex.php'); ?>
+        </div>
+
+        <div class="frame flex-element col-sm-12 col-lg-6 pad">
+          <?php include ('./siteComponents/homePage/historyindex.php'); ?>
         </div>
       </div>
     </div>
@@ -125,7 +101,8 @@ include $authorization;
     $footerFile = getAbsolutePath('siteComponents/footer.php');
     include $footerFile;
     ?>
-  </div>
+
+  </div><!--wrapper-->
 
 </body>
 
@@ -142,3 +119,47 @@ include $authorization;
 <script src="./javascript/sender.js"></script>
 
 </html>
+
+<!--   
+<div class="frame" style="align-items: stretch;
+     justify-content: space-around;">
+
+      <div class="frame">
+        <div class="blockBody">
+          <div style=" text-align: center;">
+            <img class="headerLogo mtmb" src="./images/scedulePatient.png">
+          </div>
+          <form method="post">
+            <button type="submit" class="btnlikelink" name="sighUpButton">Записаться на
+              приём</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="frame ">
+        <div class="blockBody">
+          <div style=" text-align: center;">
+            <img class="headerLogo mtmb" src="./images/managerIco.png">
+          </div>
+
+          <?php
+          /*
+          if (isset($_SESSION['manager_login']) != null) {
+            echo '<a href="./pages/manager/index.php" class="btnlikelink ">Главная страница</a>';//path btn btn-primary btn-lg
+          } else {
+            echo '<button type="submit" class="btnlikelink" data-bs-toggle="modal"
+              data-bs-target="#AuthModalManager">Авторизоваться</button>';//btn btn-primary
+          }*/
+          ?>
+ -->
+<!--modal-on button MUSNT be in FORM-->
+<!--<button type="submit" class="btn btn-primary" name="sighUpButton"></button>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+<!--<a href="pages/common/authorization.php"><button class="btn btn-primary btn-lg">Войти в профиль</button></a>    
+              //'<button type="submit" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#AuthModal">Войти в профиль</button>';-->
