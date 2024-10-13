@@ -1,8 +1,8 @@
 <?php
 
 $server = 'localhost';
-$user = 'root';
-$password = '';
+$user = 'patient';
+$password = 'dy04.ibk';
 $db = 'c90442vo_db';
 
 $mysqli = new mysqli($server, $user, $password, $db);

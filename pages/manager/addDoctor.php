@@ -4,39 +4,30 @@ include ('../../pageController.php');
 $connect = getAbsolutePath('server/connect.php');
 include $connect;
 ?>
-
 <!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../design/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../design/components.css">
     <title>Добавление доктора</title>
 </head>
 
 <body>
-
     <div class="wrapper">
 
-        <?php
-        $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-        include $headerCover;
-        echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "../../images/logo.png" style="visibility: visible" > </a>
-<p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-</div>
-<div class="flex-container">';//path
-        
-        $header = getAbsolutePath('siteComponents/header.php');
-        include $header;
-        ?>
+        <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+            <div class="frame pad"><!--header part №1-->
+                <a href="./index.php"><img class="headerLogo mtmb" src="../../images/logo.png"
+                        style="visibility: visible"></a>
+                <p class="headerTitle mtmb"> Электронная регистратура <br>ГБУЗ «Калачевская ЦРБ» </p>
+            </div><!--frame pad-->
+        </header><!--flex-container (Row №1(Header)-->
 
-        <div class="wrapper frame">
-
+        <div class="content justify-content-center" style="text-align: center;">
             <form method="post">
-
                 <div>
                     <div class="blockBody pad" style="margin: 10px; align-items: center; display:inline-block;">
 
@@ -84,9 +75,7 @@ include $connect;
                             <div class="mb-3">
                                 <div class="d-inline-flex align-items-center" style="display:inline-block">
                                     <label style="min-width: 125px !important">Специализация</label>
-
                                     <div class="form-element">
-
                                         <select class="form-control" id="specialization" name="specialization"
                                             style="width: 220px;">
                                             <?php
@@ -98,9 +87,7 @@ include $connect;
                                             ;
                                             ?>
                                         </select>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -111,23 +98,20 @@ include $connect;
 
                     </div><!--blockBody pad-->
                 </div>
-
             </form>
 
             <?php
-
             if (isset($_POST["addDoctor"])) {
                 $name = mysqli_real_escape_string($conn, $_POST["name"]);
                 $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
                 $patronymic = mysqli_real_escape_string($conn, $_POST["patronymic"]);
                 $specialization = mysqli_real_escape_string($conn, $_POST["specialization"]);
-                $sqlUpdate = "INSERT INTO `doctors` (`name`, `surname`, `patronymic`, `specializationId`) VALUES ('" . $name . "','" . $surname . "','" . $patronymic . "', '" . $specialization . "')";
-                $conn->query($sqlUpdate);
+                $query = "INSERT INTO `doctors` (`name`, `surname`, `patronymic`, `specializationId`) VALUES 
+                ('" . $name . "','" . $surname . "','" . $patronymic . "', '" . $specialization . "')";
+                $conn->query($query);
                 $conn->close();
-
             }
             ?>
-
         </div>
 
         <?php
@@ -137,20 +121,8 @@ include $connect;
 
     </div><!--wrapper-->
 
-
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+    <script src="../../javascript/bootstrap.bundle.min.js"></script>
+    <script src="../../javascript/jquery-3.7.1.min.js"></script>
 
 </body>
 

@@ -1,7 +1,7 @@
 <footer class="flex-container">
     <div class="py-3 blockBody w-100">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3 mt-3">
-            <li class="nav-item px-2 "><a href="#" class="text-muted">Ссылка</a></li>
+            <!--<li class="nav-item px-2 "><a href="#" class="text-muted">Ссылка</a></li>-->
 
         </ul>
         <p class="text-center text-muted">© 2024, ГБУЗ "Калачевская ЦРБ"</p>

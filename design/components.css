@@ -7,7 +7,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Roboto', sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
 }
 
 .wrapper {
@@ -27,7 +27,7 @@ body {
 }
 
 p{
-   font-family: 'Roboto', sans-serif;
+   /*font-family: 'Roboto', sans-serif;*/
 }
 
  .blockBody{
@@ -50,7 +50,7 @@ p{
     }
 
  .headerTitle{
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
     font-style: normal;
     font-weight: 400;
     font-size: 24px;

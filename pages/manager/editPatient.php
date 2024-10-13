@@ -11,8 +11,7 @@ include $connect;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../design/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../design/components.css">
     <title>Редактирование пациента</title>
 </head>
@@ -21,19 +20,30 @@ include $connect;
 
     <div class="wrapper">
 
-        <?php
-        $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-        include $headerCover;
-        echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "../../images/logo.png" style="visibility: visible" > </a>
-<p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-</div>
-<div class="flex-container">';//path
-        
-        $header = getAbsolutePath('siteComponents/header.php');
-        include $header;
-        ?>
+        <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+            <!--flex-container (Row №1(Header)-->
 
-        <div class="wrapper frame">
+            <div class="frame pad"><!--header part №1-->
+                <a href="../../index.php"><img class="headerLogo mtmb" src="../../images/logo.png"
+                        style="visibility: visible"></a>
+                <p class="headerTitle mtmb"> Электронная регистратура <br>ГБУЗ «Калачевская ЦРБ» </p>
+            </div><!--frame pad-->
+
+            <div class="frame"><!--header part №2-->
+                <div class="frame pad"><!--header subpart №2.1-->
+                    <?php {
+                        if (isset($_SESSION['manager_login']) != null) {
+                            echo '<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="managerLogout">Выйти из профиля</button> </form>
+          ';//path
+                        }
+                        ;
+                    }
+                    ; ?>
+                </div>
+            </div>
+        </header>
+
+        <div class="content" style="text-align: center;">
 
             <form method="post">
                 <?php
@@ -68,8 +78,8 @@ include $connect;
 
                                         <div class="form-elemnt">
                                             <input type="text" class="form-control" name="password"
-                                                placeholder="Введите пароль" value="<?php echo $row["password"]; ?>"
-                                                readonly>
+                                                placeholder="Введите пароль"
+                                                value="<?php echo $row["password"]; ?>"><!--readonly-->
                                         </div>
                                     </div>
                                 </div>
@@ -181,8 +191,8 @@ include $connect;
                                                 value="<?php echo $row["mio"]; ?>">
                                         </div>
                                     </div>
-                                    <div class="form-text">СМО - страховая медицинская организация<br>Используйте одинарные
-                                        кавычки для выделения</div>
+                                    <div class="form-text">СМО - страховая медицинская организация</div><!--<br>Используйте одинарные
+                                        кавычки для выделения-->
                                 </div>
                             </div>
 
@@ -263,7 +273,7 @@ include $connect;
 
             if (isset($_POST["edit"])) {
                 $login = mysqli_real_escape_string($conn, $_POST["login"]);
-                //$password = mysqli_real_escape_string($conn, $_POST["password"]);
+                $password = md5(mysqli_real_escape_string($conn, $_POST["password"]));
                 $name = mysqli_real_escape_string($conn, $_POST["name"]);
                 $surname = mysqli_real_escape_string($conn, $_POST["surname"]);
                 $patronymic = mysqli_real_escape_string($conn, $_POST["patronymic"]);
@@ -278,12 +288,13 @@ include $connect;
                 $disability = mysqli_real_escape_string($conn, $_POST["disability"]);
                 $phoneNumber = mysqli_real_escape_string($conn, $_POST["phoneNumber"]);
 
-                $sqlUpdate = "UPDATE `patients` SET `login`= '" . $login . "' ,`name`= '" . $name . "' , `surname`= '" . $surname . "', `patronymic`='" . $patronymic . "',
+                $sqlUpdate = "UPDATE `patients` SET `login`= '" . $login . "',`password`= '" . $password . "',`name`= '" . $name . "' , `surname`= '" . $surname . "', `patronymic`='" . $patronymic . "',
                 `email`= '" . $email . "' ,`birthdayDate`= '" . $birthdayDate . "' ,`permanentResidence`= '" . $permanentResidence . "' ,`passport`= '" . $passport . "' ,
                 `mio`= '" . $mio . "' ,`policyCMI`= '" . $policyCMI . "' ,`policyPIP`= '" . $policyPIP . "' ,`disability`= '" . $disability . "' ,`phoneNumber`= '" . $phoneNumber . "'
                 WHERE `patientId` = '" . $patientId . "' ";
                 $conn->query($sqlUpdate);
                 $conn->close();
+                echo "<meta http-equiv='refresh' content='0'>";
             }
             ?>
 

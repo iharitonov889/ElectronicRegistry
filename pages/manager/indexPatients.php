@@ -10,8 +10,7 @@ include $connect;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../design/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../design/components.css">
     <title>Работа с пациентами</title>
 </head>
@@ -19,63 +18,91 @@ include $connect;
 <body>
     <div class="wrapper">
 
-        <?php
-        $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-        include $headerCover;
-        echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "../../images/logo.png" style="visibility: visible" > </a>
-        <p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-       </div>
-      <div class="flex-container">';//path
-        
-        $header = getAbsolutePath('siteComponents/header.php');
-        include $header;
-        ?>
+        <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+            <!--flex-container (Row №1(Header)-->
 
-        <div class="wrapper" style="margin: 20px;">
+            <div class="frame pad"><!--header part №1-->
+                <a href="../../index.php"><img class="headerLogo mtmb" src="../../images/logo.png"
+                        style="visibility: visible"></a>
+                <p class="headerTitle mtmb"> Электронная регистратура <br>ГБУЗ «Калачевская ЦРБ» </p>
+            </div><!--frame pad-->
 
-
-            <form>
-                <div class="form-element flex-element">
-                    <!--<input type="submit" name="edit" value="Сохранить изменения" class="btn btn-primary">-->
-                    <a href="addPatient.php" class="btn btn-primary" style="width:100%">Добавить нового пациента</a>
-                </div>
-            </form>
-            <table class="table table-bordered blockBody">
-                <thead>
-                    <tr><!--thead class affects the columns-->
-                        <th class="flex-element">Идентификатор</th>
-                        <th class="flex-element">Фамилия</th>
-                        <th class="flex-element">Имя</th>
-                        <th class="flex-element">Отчество</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    $query = "SELECT * FROM patients";
-                    $result = mysqli_query($conn, $query);
-                    while ($data = mysqli_fetch_array($result)) {
-                        ?>
-                        <tr>
-                            <td class="flex-element"><?php echo $data['patientId']; ?></td>
-                            <td class="flex-element"><?php echo $data['surname']; ?></td>
-                            <td class="flex-element"><?php echo $data['name']; ?></td>
-                            <td class="flex-element"><?php echo $data['patronymic']; ?></td>
-
-
-
-                            <td class="flex-element">
-                                <a href="editPatient.php?patientId=<?php echo $data['patientId']; ?>"
-                                    class="btn btn-primary">Редактировать</a>
-                                <a href="deletePatient.php?patientId=<?php echo $data['patientId']; ?>"
-                                    class="btn btn-primary">Удалить</a>
-                            </td>
-                        </tr>
-                        <?php
+            <div class="frame"><!--header part №2-->
+                <div class="frame pad"><!--header subpart №2.1-->
+                    <?php {
+                        if (isset($_SESSION['manager_login']) != null) {
+                            echo '<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="managerLogout">Выйти из профиля</button> </form>
+          ';//path
+                        }
+                        ;
                     }
-                    ?>
-                </tbody>
-            </table>
+                    ; ?>
+                </div>
+            </div>
+        </header>
+
+        <div class="content" style="margin: 20px;">
+
+            <?php
+            if (!(isset($_SESSION['manager_login']))) {
+                echo '<div class="frameWOIF pad">
+                <div class="blockBody flex-element col-sm-12 col-lg-6" style="margin-left: auto; margin-right: auto;">
+<div class="container-fluid block text-sm-center" style="text-align: left"><!--style=" display: table;"-->
+<h4>Меню управления менеджера недоступно</h4>
+<p>Ошибка - не была пройдена авторизация</p>
+<h5 style="color: #6B9AFF;">Доступ запрещен</h5>
+</div><!--container-fluid-->
+</div> <!--flex-element-->
+</div>';
+            } else { ?>
+
+                <form>
+                    <div class="form-element flex-element">
+                        <!--<input type="submit" name="edit" value="Сохранить изменения" class="btn btn-primary">-->
+                        <a href="addPatient.php" class="btn btn-primary" style="width:100%">Добавить нового пациента</a>
+                    </div>
+                </form>
+                <table class="table table-bordered blockBody">
+                    <thead>
+                        <tr><!--thead class affects the columns-->
+                            <th class="flex-element">Идентификатор</th>
+                            <th class="flex-element">Фамилия</th>
+                            <th class="flex-element">Имя</th>
+                            <th class="flex-element">Отчество</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $query = "SELECT * FROM patients";
+                        $result = mysqli_query($conn, $query);
+                        while ($data = mysqli_fetch_array($result)) {
+                            ?>
+                            <tr>
+                                <td class="flex-element"><?php echo $data['patientId']; ?></td>
+                                <td class="flex-element"><?php echo $data['surname']; ?></td>
+                                <td class="flex-element"><?php echo $data['name']; ?></td>
+                                <td class="flex-element"><?php echo $data['patronymic']; ?></td>
+
+
+
+                                <td class="flex-element">
+                                    <a href="editPatient.php?patientId=<?php echo $data['patientId']; ?>"
+                                        class="btn btn-primary">Редактировать</a>
+                                    <a href="deletePatient.php?patientId=<?php echo $data['patientId']; ?>"
+                                        class="btn btn-primary">Удалить</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+
+            <?php }
+            ; ?>
+
+
 
 
 
@@ -92,17 +119,7 @@ include $connect;
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+<script src="../../javascript/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/jquery-3.7.1.min.js"></script>
 
 </html>

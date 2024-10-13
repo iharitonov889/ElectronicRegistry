@@ -19,14 +19,14 @@
           <div class="container-fluid col-xs-5 col-sm-6 col-md-6">
             <div style="display:table-cell; width:100%; padding: 10px; ">
               <p style="text-align: right;">
-              <h2 style="align-items: center">Иван Иванович Охлобыстин</h2>
+              <h2 style="align-items: center">Андрей Евгеньевич Быков</h2><!--Иван Иванович Охлобыстин-->
               </p>
-              <p style="text-align: left">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p style="text-align: left">Pellentesque et fermentum nibh. Aliquam hendrerit ultricies dolor in faucibus
-              </p>
-              <p style="text-align: left">Sed maximus augue a elit vehicula hendrerit in at nisi</p>
-              <p style="text-align: left">Donec tristique odio et nisi ultrices, at aliquet sem maximus</p>
-              <p style="text-align: left">Proin euismod, augue in pellentesque accumsan, erat leo placerat eros</p>
+              <p style="text-align: left">Заведующий терапевтическим отделением больницы и руководитель четырёх
+                интернов.</p>
+              <p style="text-align: left">Является отличным специалистом, обладает добрым характером,</p>
+              <p style="text-align: left">по своей природе ответственен и трудолюбив.</p>
+              <p style="text-align: left">Имееет прекрасные знания в своей области,</p>
+              <p style="text-align: left">"Врач – это человек, готовый посвятить себя служению людям."</p>
             </div><!--text_block-->
           </div><!--container-fluid-half_№2-->
         </div><!--flex-container-->
@@ -35,18 +35,16 @@
       <div class="carousel-item">
         <div class="flex-container col-sm-12" style="flex-wrap: nowrap; height: 500px">
           <div class="container-fluid col-xs-12 col-sm-6 col-md-6">
-            <img src="./images/doctors/doc1.jpg" class="d-block w-100" alt="Second-slide">
+            <img src="./images/doctors/doc2.jpg" class="d-block w-100" alt="Second-slide">
           </div><!--container-fluid-half_№1-->
           <div class="container-fluid col-xs-5 col-sm-6 col-md-6">
             <div style="display:table-cell; width:100%; padding: 10px; ">
               <p>
-              <h2 style="align-items: center">ФИО</h2>
-              <br>Био
-              <br>1
-              <br>2
-              <br>3
-              <br>4
-              <br>5
+              <h2 style="align-items: center">Журавлёва Анастасия Артемовна</h2>
+              <p style="text-align: left">Является отличным специалистом, обладает добрым характером,</p>
+              <p style="text-align: left">по своей природе ответственна и трудолюбива.</p>
+              <p style="text-align: left">Имееет прекрасные знания в своей области,</p>
+              <p style="text-align: left">"Врач должен делать свое дело тихо и с пользой."</p>
               </p>
             </div>
           </div><!--container-fluid-half_№2-->
@@ -56,18 +54,16 @@
       <div class="carousel-item">
         <div class="flex-container col-sm-12" style="flex-wrap: nowrap; height: 500px">
           <div class="container-fluid col-xs-12 col-sm-6 col-md-6">
-            <img src="./images/doctors/doc1.jpg" class="d-block w-100" alt="Second-slide">
+            <img src="./images/doctors/doc3.jpg" class="d-block w-100" alt="Second-slide">
           </div><!--container-fluid-half_№1-->
           <div class="container-fluid col-xs-5 col-sm-6 col-md-6">
             <div style="display:table-cell; width:100%; padding: 10px; ">
               <p>
-              <h2 style="align-items: center">ФИО</h2>
-              <br>Био
-              <br>1
-              <br>2
-              <br>3
-              <br>4
-              <br>5
+              <h2 style="align-items: center">Цветкова Зинаида Владиславовна</h2>
+              <p style="text-align: left">Является отличным специалистом, обладает добрым характером,</p>
+              <p style="text-align: left">по своей природе ответственна и трудолюбива.</p>
+              <p style="text-align: left">Имееет прекрасные знания в своей области,</p>
+              <p style="text-align: left">"Красноречие врача - в краткословии."</p>
               </p>
             </div>
           </div><!--container-fluid-half_№2-->

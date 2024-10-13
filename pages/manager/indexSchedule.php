@@ -10,8 +10,7 @@ include $connect;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../design/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../design/components.css">
     <title>Работа с расписанием докторов</title>
 </head>
@@ -19,45 +18,62 @@ include $connect;
 <body>
 
     <div class="wrapper">
-        <?php
-        $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-        include $headerCover;
-        echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "../../images/logo.png" style="visibility: visible" > </a>
-        <p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-       </div>
-      <div class="flex-container">';//path
-        
-        $header = getAbsolutePath('siteComponents/header.php');
-        include $header;
-        ?>
+        <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+            <!--flex-container (Row №1(Header)-->
 
-        <div class="wrapper">
-            <div class="frameWOIF pad">
-                <div class="flex-container col-sm-12 col-lg-12">
-                    <div class="flex-element col-sm-12 col-lg-6 form-control">
+            <div class="frame pad"><!--header part №1-->
+                <a href="../../index.php"><img class="headerLogo mtmb" src="../../images/logo.png"
+                        style="visibility: visible"></a>
+                <p class="headerTitle mtmb"> Электронная регистратура <br>ГБУЗ «Калачевская ЦРБ» </p>
+            </div><!--frame pad-->
 
-                        <div id="div_Doctors">
-                            <form id="form_select_Doctor" method="post">
-                                <div class="form-card" style="margin: 10px">
-                                    <select class="form-control flex-element" id="selectDoctor"
-                                        name="selectDoctor"><!-- multiple="multiple" onchange="this.form.submit()"-->
-                                        <?php
-                                        $query = "SELECT * FROM `doctors`";
-                                        $res = mysqli_query($conn, $query);
-                                        while ($row = $res->fetch_assoc()) {
-                                            echo '<option value=" ' . $row['doctorId'] . ' " > ' . $row['surname'] . ' ' . $row['name'] . ' ' . $row['patronymic'] . ' </option>';
-                                        }
-                                        ; ?>
-                                    </select>
-                                </div>
+            <div class="frame"><!--header part №2-->
+                <div class="frame pad"><!--header subpart №2.1-->
+                    <?php {
+                        if (isset($_SESSION['manager_login']) != null) {
+                            echo '<form method="post"> <button type="submit" class="btn btn-primary btn-lg" name="managerLogout">Выйти из профиля</button> </form>
+          ';//path
+                        }
+                        ;
+                    }
+                    ; ?>
+                </div>
+            </div>
+        </header>
 
-                                <input name="buttonDoctorAddSchedule" id="buttonDoctorAddSchedule"
-                                    class="btn btn-primary" value="Приступить к добавлению времени приёма"
-                                    type="submit" />
+        <div class="content  mt-3">
+            <div class="container">
+                <div class="row text-sm-center">
+                    <div class="col-md-6 offset-md-3 blockBody pad">
 
+                        <div id="div_Doctors" class="flex-container mb-2" style="justify-content: center">
+                            <div class="frame col-sm-3 col-lg-3">
+                                <div class="text-sm-center" style="text-align: center;"><label>Доктор</label></div>
+                            </div>
 
+                            <div class="frame flex-element col-sm-6 col-md-6 col-lg-6">
+                                <form id="form_select_Doctor" method="post">
+                                    <div class="form-card col-lg-12" style="margin: 10px">
+
+                                        <select class="form-control flex-element " id="selectDoctor"
+                                            name="selectDoctor"><!-- multiple="multiple" onchange="this.form.submit()"-->
+                                            <?php
+                                            $query = "SELECT * FROM `doctors`";
+                                            $res = mysqli_query($conn, $query);
+                                            while ($row = $res->fetch_assoc()) {
+                                                echo '<option value=" ' . $row['doctorId'] . ' " > ' . $row['surname'] . ' ' . $row['name'] . ' ' . $row['patronymic'] . ' </option>';
+                                            }
+                                            ; ?>
+                                        </select>
+
+                                    </div>
+                            </div>
+                            <input name="buttonDoctorAddSchedule" id="buttonDoctorAddSchedule" class="btn btn-primary"
+                                value="Подтвердить выбор" type="submit" /><!--Приступить к добавлению времени приёма-->
                             </form>
                         </div>
+
+
 
                         <div id="div_schedules">
                             <form id="form_addSchedule" method="post">
@@ -70,20 +86,18 @@ include $connect;
                                     ;
                                     ?>
 
-                                    <div class="blockBody pad" style="margin: 10px;">
-
+                                    <div class="pad" style="margin: 10px;">
+                                        <!--
                                         <div class="container" style="justify-content: space-between;">
                                             <div class="mb-3 frame">
                                                 <div class="d-inline-flex align-items-center"
                                                     style="display:inline-block">
                                                     <label> Идентификатор доктора</label>
                                                     <input id="selectedDoctor" name="selectedDoctor" type="text"
-                                                        class="form-control flex-element" value="<?php if (isset($_POST['selectDoctor'])) {
-                                                            echo $selectedDoctor;
-                                                        } ?> " readonly />
+                                                        class="form-control flex-element" value="<?php //if (isset($_POST['selectDoctor'])) {echo $selectedDoctor;} ?> " readonly />
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <div class="container" style="justify-content: space-between;"><!--pt-1-->
                                             <div class="mb-3">
@@ -120,16 +134,17 @@ include $connect;
 
     <!--modals - https://stackoverflow.com/questions/63517642/open-bootstrap-modal-when-enter-pressed-on-form -->
 
-    <div><!--PHP-->
+    <div>
         <?php
-        if (isset($_POST['scheduleDT'])) {//name of button from form
+        if (isset($_POST['scheduleDT'])) {
             $selectedDoctor = $_POST['selectedDoctor'];
-            //echo "<script>console.log('" . $selectedDoctor . "' );</script>";//data comes here - great
-            $scheduleDT = $_POST['scheduleDT']; //echo "<script>console.log('" . $scheduleDT . "' );</script>";//data comes here - great
-            $query = mysqli_query($conn, "INSERT INTO `schedules` (`doctorId`, `datetimeOfReception`) VALUES ('$selectedDoctor','$scheduleDT')");
+            $scheduleDT = $_POST['scheduleDT'];
+            $query = mysqli_query($conn, "INSERT INTO `schedules` 
+            (`doctorId`, `datetimeOfReception`) 
+            VALUES ('$selectedDoctor','$scheduleDT')");
             $res = $conn->query($query);
             $conn->close();
-        }//isset
+        }
         ?>
     </div>
 
@@ -137,18 +152,8 @@ include $connect;
 
 
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-    crossorigin="anonymous"></script>
+<script src="../../javascript/bootstrap.bundle.min.js"></script>
+<script src="../../javascript/jquery-3.7.1.min.js"></script>
 
 
 </html>

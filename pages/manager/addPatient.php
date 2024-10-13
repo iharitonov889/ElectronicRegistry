@@ -11,8 +11,7 @@ include $connect;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../design/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../../design/components.css">
     <title>Добавление доктора</title>
 </head>
@@ -21,19 +20,15 @@ include $connect;
 
     <div class="wrapper">
 
-        <?php
-        $headerCover = getAbsolutePath('siteComponents/headerCover.php');
-        include $headerCover;
-        echo '<a href="./index.php"> <img class="headerLogo mtmb" src= "../../images/logo.png" style="visibility: visible" > </a>
-<p class="headerTitle mtmb"> Электронная <br> регистратура </p>
-</div>
-<div class="flex-container">';//path
-        
-        $header = getAbsolutePath('siteComponents/header.php');
-        include $header;
-        ?>
+        <header class="flex-container blockBody pad" style="width: 100%; justify-content: space-between;">
+            <div class="frame pad"><!--header part №1-->
+                <a href="../../index.php"><img class="headerLogo mtmb" src="../../images/logo.png"
+                        style="visibility: visible"></a>
+                <p class="headerTitle mtmb"> Электронная регистратура <br>ГБУЗ «Калачевская ЦРБ» </p>
+            </div><!--frame pad-->
+        </header><!--flex-container (Row №1(Header)-->
 
-        <div class="wrapper frame">
+        <div class="content" style="text-align: center;">
 
             <form method="post">
 
@@ -258,9 +253,10 @@ include $connect;
 
                 $sqlInsert = "INSERT INTO `patients` (`login`, `password`, `name`, `surname`, `patronymic`, 
                 `email`, `birthdayDate`, `permanentResidence`, `passport`, `mio`, `policyCMI`, `policyPIP`, `disability`, `phoneNumber`) 
-                
-                VALUES ('" . $login . "','" . $password . "','" . $name . "', '" . $surname . "','" . $patronymic . "','" . $email . "','" . $birthdayDate . "', '" . $permanentResidence . "'
-                ,'" . $passport . "','" . $mio . "', '" . $policyCMI . "','" . $policyPIP . "','" . $disability . "', '" . $phoneNumber . "')";
+                VALUES ('" . $login . "','" . $password . "','" . $name . "', '" . $surname . "','" . $patronymic . "',
+                '" . $email . "','" . $birthdayDate . "', '" . $permanentResidence . "',
+                '" . $passport . "','" . $mio . "', '" . $policyCMI . "','" . $policyPIP . "',
+                '" . $disability . "', '" . $phoneNumber . "')";
                 $conn->query($sqlInsert);
                 $conn->close();
 
@@ -278,18 +274,8 @@ include $connect;
 
 
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-        crossorigin="anonymous"></script>
+    <script src="../../javascript/bootstrap.bundle.min.js"></script>
+    <script src="../../javascript/jquery-3.7.1.min.js"></script>
 
 </body>
 
